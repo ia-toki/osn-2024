@@ -1,0 +1,166 @@
+<!-- Title: Monochrome Mosaic -->
+
+<h3>Description</h3>
+
+<p>
+  Bu Dengklek has a mosaic in the form of $N \times M$ grid, where every square is either white or black.
+  The rows are numbered from $1$ to $N$ from top to bottom; the columns are numbered from $1$ to $M$ from left to right.
+  Let $(i, j)$ denote the square at row $i$ and column $j$.
+  In the beginning, all squares are white. 
+</p>
+<p>
+  In one operation, Bu Dengklek can perform one of the following actions:
+</p>
+<ul>
+  <li>Choose one row, then color all squares on that row with the same color.</li>
+  <li>Choose one column, then color all squares on that column with the same color.</li>
+</ul>
+<p>
+  Bu Dengklek has a mosaic plan that is represented by a matrix $S$ of size $N \times M$, where each element is either the character <code>.</code> or the character <code>#</code>.
+</p>
+<ul>
+  <li>If $S_{i,j}$ is <code>.</code>, then Bu Dengklek wants square $(i, j)$ to be white in the end.</li>
+  <li>If $S_{i,j}$ is <code>#</code>, then Bu Dengklek wants square $(i, j)$ to be black in the end.</li>
+</ul>
+<p>
+  It is guaranteed that Bu Dengklek's mosaic plan can be achieved using only the operations above.
+</p>
+<p>
+  Bu Dengklek wants to perform no more than $200\,000$ operations to produce a mosaic that is as close as possible to her plan.
+  Help Bu Dengklek find the sequence of operations that maximizes the number of squares that are colored according to her plan!
+</p>
+
+<h3>Constraints</h3>
+
+<ul>
+  <li>$1 \leq N, M \leq 100\,000$</li>
+  <li>$N \times M \leq 2\,000\,000$</li>
+  <li>$S$ only contains the characters <code>.</code> or <code>#</code>.</li>
+  <li>It is guaranteed that the mosaic plan can be achieved using only the operations above.</li>
+</ul>
+
+<h3>Problem Type Information</h3>
+
+<p>
+  This is an "output-only" problem.
+  For each test case, you write the output to a file.
+</p>
+<p>
+  The input files for this problem can be downloaded in the attachment section at the end of this problem.
+  Inside the .zip file, there are $5$ input files to solve: <code>mosaik_1.in</code>, <code>mosaik_2.in</code>, <code>mosaik_3.in</code>, <code>mosaik_4.in</code>, and <code>mosaik_5.in</code>.
+</p>
+<p>
+  For each input file that you solve (you don't have to solve all input files), create an output file <code>mosaik_T.out</code>, where <code>T</code> is the test case number.
+  Then, compress all output files into a single .zip file, then submit.
+</p>
+
+<h3>Input</h3>
+
+<p>
+  The input is given with the following format:
+</p>
+<pre>
+N M
+S<sub>1,1</sub>S<sub>1,2</sub>&hellip;S<sub>1,N</sub>
+S<sub>2,1</sub>S<sub>2,2</sub>&hellip;S<sub>2,M</sub>
+&vellip;     &#x22f1; &vellip;
+S<sub>N,1</sub>S<sub>N,2</sub>&hellip;S<sub>N,M</sub>
+</pre>
+
+<h3>Output</h3>
+
+<p>
+  On the first line, output an integer $Z$ ($0 \leq Z \leq 200\,000$) representing the number of operations performed.
+</p>
+<p>
+  Then, output $Z$ lines, where the $k$-th line represents the $k$-th operation.
+  Each line consists of three sections separated by a space:
+</p>
+<ol>
+  <li>A string <code>BARIS</code> (Indonesian word for "row") or <code>KOLOM</code> (Indonesian word for "column") representing whether the operation is performed on a row or a column respectively.</li>
+  <li>An integer representing the row/column number that the operation will be performed on.</li>
+  <li>A character <code>.</code> or <code>#</code> representing the operation's color, where <code>.</code> represents white and <code>#</code> represents black.</li>
+</ol>
+
+<h3>Scoring</h3>
+
+<p>
+  Your output will receive a score on a test case if your output follows the output format and satisfies the constraints.
+</p>
+<p>
+  For a test case, after all operations are performed, let $c$ denote the number of squares with the same color as planned.
+  Then, your score for that test case is $\left(\frac{c}{N \times M}\right)^3 \times 20$.
+  Your final score is the sum of the scores of all test cases, which is then rounded down.
+</p>
+<p>
+  If a test receives a score, you can see its detailed scoring in the submission page.
+  You can also see the number of squares that are colored as planned for that test case.
+</p>
+
+<h3>Sample Input</h3>
+
+<pre>
+6 9
+##.###.##
+.#.#.#.#.
+##.###.##
+.#.....#.
+#########
+##.###.##
+</pre>
+
+<h3>Sample Output</h3>
+
+<pre>
+5
+KOLOM 4 #
+KOLOM 6 #
+BARIS 4 .
+BARIS 3 #
+BARIS 1 #
+</pre>
+
+<h3>Explanation of Sample</h3>
+
+<p>
+  The following is Bu Dengklek's mosaic plan:
+</p>
+<p>
+  <img src="render/mosaik.png" style="width: 400px;">
+</p>
+<p>
+  The sequence of operations above will transform the mosaic as follows:
+</p>
+<p>
+  <img src="render/mosaik0.png" style="width: 200px;">
+</p>
+<p>
+  <img src="render/mosaik1.png" style="width: 200px;">
+</p>
+<p>
+  <img src="render/mosaik2.png" style="width: 200px;">
+</p>
+<p>
+  <img src="render/mosaik3.png" style="width: 200px;">
+</p>
+<p>
+  <img src="render/mosaik4.png" style="width: 200px;">
+</p>
+<p>
+  <img src="render/mosaik5.png" style="width: 200px;">
+</p>
+<p>
+  The following squares are the squares that are colored as planned:
+</p>
+<p>
+  <img src="render/mosaik5check.png" style="width: 400px;">
+</p>
+<p>
+  Therefore, the score of this test case is $\left(\frac{34}{6 \times 9}\right)^3 \times 20 \approx 4.992$.
+</p>
+
+<h3>Attachment</h3>
+
+<p>
+  The input files for this problem can be downloaded <a href="render/inputs.zip">here</a>.
+</p>

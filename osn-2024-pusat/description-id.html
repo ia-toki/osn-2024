@@ -1,0 +1,136 @@
+<!-- Title: Pemerintahan Pusat -->
+
+<h3>Deskripsi</h3>
+
+<p>
+  Selain menjadi kota terbesar di Indonesia, Jakarta juga merupakan pusat pemerintahan Indonesia.
+  Pak Dengklek ingin meneliti struktur dari pemerintahan pusat.
+</p>
+<p>
+  Terdapat $N$ anggota kabinet pemerintahan pusat, yang dinomori dari $1$ hingga $N$.
+  Untuk setiap anggota $i$ ($2 \leq i \leq N$), dia adalah bawahan langsung dari anggota $P_i$ ($1 \leq P_i \leq i - 1$).
+  Perhatikan bahwa anggota $1$ bukanlah bawahan langsung dari siapa pun.
+  Kita definisikan $b(i)$ sebagai banyaknya bawahan langsung yang dimiliki anggota $i$.
+</p>
+<p>
+  Untuk sebuah usulan yang dirapatkan, setiap anggota harus memilih untuk setuju atau tidak setuju.
+  Namun, aturan kabinet mengharuskan bahwa untuk setiap anggota $i$, tepat $D_i$ ($0 \leq D_i \leq b(i)$) dari bawahan langsungnya harus memilih opsi yang berbeda dengan anggota $i$.
+</p>
+<p>
+  Setiap anggota $i$ mempunyai nilai pengaruh $W_i$.
+  Untuk suatu hasil pemungutan suara oleh seluruh anggota, kita definisikan <b>nilai dominasi</b> sebagai selisih dari jumlah nilai pengaruh anggota-anggota yang setuju dengan jumlah nilai pengaruh anggota-anggota yang tidak setuju.
+  Pak Dengklek ingin tahu nilai dominasi maksimum yang mungkin.
+  Bantu Pak Dengklek menghitungnya!
+</p>
+
+<h3>Batasan</h3>
+
+<ul>
+  <li>$1 \leq N \leq 100\,000$</li>
+  <li>$1 \leq P_i \leq i - 1$</li>
+  <li>$1 \leq W_i \leq 10^9$</li>
+  <li>$0 \leq D_i \leq b(i)$</li>
+</ul>
+
+<h3>Subsoal</h3>
+
+<ol>
+  <li>&nbsp;&nbsp;(6 poin) $D_i = 0$</li>
+  <li>(11 poin) Untuk setiap $i$, berlaku $D_i = 0$ atau $D_i = b(i)$.</li>
+  <li>(11 poin) $P_i = 1$</li>
+  <li>(20 poin) $N \leq 100$; $W_i = 1$</li>
+  <li>(22 poin) $N \leq 2000$</li>
+  <li>
+    (13 poin) Untuk setiap $i$, salah satu dari syarat berikut berlaku:
+    <ul>
+      <li>$b(i) = 0$; $D_i = 0$</li>
+      <li>$b(i) = 2$; $D_i = 1$</li>
+    </ul>
+  </li>
+  <li>(17 poin) Tidak ada batasan tambahan.</li>
+</ol>
+
+<h3>Masukan</h3>
+
+<p>
+  Masukan diberikan dalam format berikut:
+</p>
+<pre>
+N
+P<sub>2</sub> P<sub>3</sub> &hellip; P<sub>N</sub>
+W<sub>1</sub> W<sub>2</sub> W<sub>3</sub> &hellip; W<sub>N</sub>
+D<sub>1</sub> D<sub>2</sub> D<sub>3</sub> &hellip; D<sub>N</sub>
+</pre>
+
+<h3>Keluaran</h3>
+
+<p>
+  Keluarkan sebuah bilangan bulat yang menyatakan nilai dominasi maksimum yang mungkin.
+</p>
+
+<h3>Contoh Masukan 1</h3>
+
+<pre>
+6
+1 1 3 3 3
+5 3 2 4 1 6
+1 0 2 0 0 0
+</pre>
+
+<h3>Contoh Keluaran 1</h3>
+
+<pre>
+15
+</pre>
+
+<h3>Penjelasan Contoh 1</h3>
+
+<p>
+  Berikut adalah ilustrasi struktur anggota kabinet pemerintahan pusat.
+</p>
+<p>
+  <img src="render/pusat.png" style="width: 200px;">
+</p>
+<p>
+  Salah satu hasil pemungutan suara yang menghasilkan nilai dominasi maksimum adalah jika anggota $1$, $2$, $4$, dan $6$ setuju, sedangkan anggota $3$ dan $5$ tidak setuju.
+  Hasil ini memenuhi karena:
+</p>
+<ul>
+  <li>Anggota $1$ memiliki tepat $D_1 = 1$ bawahan langsung yang memilih opsi berbeda dengannya, yaitu anggota $3$.</li>
+  <li>Anggota $3$ memiliki tepat $D_3 = 2$ bawahan langsung yang memilih opsi berbeda dengannya, yaitu anggota $4$ dan $6$.</li>
+  <li>Anggota-anggota lainnya tidak memiliki bawahan langsung.</li>
+</ul>
+<p>
+  <img src="render/pusatpilih.png" style="width: 200px;">
+</p>
+<p>
+  Nilai dominasinya adalah selisih dari $W_1 + W_2 + W_4 + W_6 = 5 + 3 + 4 + 6 = 18$ dan $W_3 + W_5 = 2 + 1 = 3$, yaitu $15$.
+</p>
+
+<h3>Contoh Masukan 2</h3>
+
+<pre>
+3
+1 1
+2 6 5
+0 0 0
+</pre>
+
+<h3>Contoh Keluaran 2</h3>
+
+<pre>
+13
+</pre>
+
+<h3>Penjelasan Contoh 2</h3>
+
+<p>
+  Berikut adalah ilustrasi struktur anggota kabinet pemerintahan pusat.
+</p>
+<p>
+  <img src="render/pusat2.png" style="width: 200px;">
+</p>
+<p>
+  Salah satu hasil pemungutan suara yang menghasilkan nilai dominasi maksimum adalah jika semua anggota tidak setuju.
+  Nilai dominasinya adalah $13$.
+</p>

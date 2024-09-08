@@ -1,0 +1,156 @@
+<!-- Title: Manual Car -->
+
+<h3>Description</h3>
+
+<p>
+  Jakarta is infamous for its congested traffic. 
+  Bu Dengklek is often bothered by this condition, especially since her car is a manual car with numerous gears.
+</p>
+<p style="text-align: center;">
+  <img src="render/mobilmanual.png" style="width: 400px; border-radius: 20px;">
+</p>
+<p>
+  Bu Dengklek's car has $N$ gears, numbered from $1$ to $N$.
+  At any point in time, her car can only be in exactly one gear.
+  If her car is in the $i$-th gear, its speed can only be between $L_i$ and $R_i$ inclusive.
+</p>
+<p>
+  Bu Dengklek would like to drive her car for $M$ minutes.
+  At the $i$-th minute, she wants her car's speed to be $A_i$.
+  Bu Dengklek can choose <b>any gear for her initial gear</b>. 
+  Between each minute, Bu Dengklek is allowed to shift gears.
+  At each minute, the current gear must accommodate the required speed.
+</p>
+<p>
+  Shifting gears every minute risks damaging the gear shift mechanism.
+  Hence, she would like to minimize the number of gear shifts.
+  What is the minimum number of gear shifts that would accommodate Bu Dengklek's speed requirements?
+  Or report if it is impossible to satisfy all speed requirements!
+</p>
+
+<h3>Constraints</h3>
+
+<ul>
+  <li>$1 \leq N, M \leq 100\,000$</li>
+  <li>$1 \leq L_i \leq R_i \leq 10^9$</li>
+  <li>$1 \leq A_i \leq 10^9$</li>
+</ul>
+
+<h3>Subtasks</h3>
+
+<ol>
+  <li>&nbsp;&nbsp;(5 points) $N = 1$; $M = 1$</li>
+  <li>(15 points) $R_i &lt; L_{i + 1}$</li>
+  <li>(19 points) $N, M \leq 100$</li>
+  <li>(11 points) $N, M \leq 2000$</li>
+  <li>(15 points) $L_i &lt; L_{i + 1}$; $R_i &lt; R_{i + 1}$; $A_i \leq A_{i + 1}$</li>
+  <li>(16 points) $A_i \leq A_{i + 1}$</li>
+  <li>(19 points) No additional constraints.</li>
+</ol>
+
+<h3>Input</h3>
+
+<p>
+  The input is given in the following format:
+</p>
+<pre>
+N
+L<sub>1</sub> R<sub>1</sub>
+L<sub>2</sub> R<sub>2</sub>
+&vellip;
+L<sub>N</sub> R<sub>N</sub>
+M
+A<sub>1</sub> A<sub>2</sub> &hellip; A<sub>M</sub>
+</pre>
+
+<h3>Output</h3>
+
+<p>
+  Output an integer that represents the minimum number of gear shifts, or <code>-1</code> if it is impossible to satisfy all speed requirements.
+</p>
+
+<h3>Sample Input 1</h3>
+
+<pre>
+4
+1 4
+7 7
+6 9
+8 10
+6
+3 8 10 2 7 7
+</pre>
+
+<h3>Sample Output 1</h3>
+
+<pre>
+3
+</pre>
+
+<h3>Explanation of Sample 1</h3>
+
+<p>
+  Bu Dengklek can carry out the following strategy:
+</p>
+<ol>
+  <li>Set the initial gear to the $1$-st gear.</li>
+  <li>The speed requirement for the $1$-st minute is satisfied since $1 \leq 3 \leq 4$.</li>
+  <li>Shift to the $4$-th gear.</li>
+  <li>The speed requirement for the $2$-nd minute is satisfied since $8 \leq 8 \leq 10$.</li>
+  <li>The speed requirement for the $3$-rd minute is satisfied since $8 \leq 10 \leq 10$.</li>
+  <li>Shift to the $1$-st gear.</li>
+  <li>The speed requirement for the $4$-th minute is satisfied since $1 \leq 2 \leq 4$.</li>
+  <li>Shift to the $2$-nd gear.</li>
+  <li>The speed requirement for the $5$-th minute is satisfied since $7 \leq 7 \leq 7$.</li>
+  <li>The speed requirement for the $6$-th minute is satisfied since $7 \leq 7 \leq 7$.</li>
+</ol>
+<p>
+  There are $3$ gear shifts.
+</p>
+
+<h3>Sample Input 2</h3>
+
+<pre>
+3
+1 1000
+1000 1000000
+1000000 1000000000
+7
+2 5 6 25 26 65 265
+</pre>
+
+<h3>Sample Output 2</h3>
+
+<pre>
+0
+</pre>
+
+<h3>Explanation of Sample 2</h3>
+
+<p>
+  Bu Dengklek can set the initial gear to the $1$-st gear and does not need to shift the gear throughout the journey.
+</p>
+
+<h3>Sample Input 3</h3>
+
+<pre>
+4
+1 4
+7 7
+6 9
+8 10
+6
+2 10 3 5 7 6
+</pre>
+
+<h3>Sample Output 3</h3>
+
+<pre>
+-1
+</pre>
+
+<h3>Explanation of Sample 3</h3>
+
+<p>
+  It is impossible for Bu Dengklek to satisfy all speed requirements.
+</p>

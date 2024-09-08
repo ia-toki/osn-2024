@@ -1,0 +1,136 @@
+<!-- Title: Central Government -->
+
+<h3>Description</h3>
+
+<p>
+  Apart from being the largest city in Indonesia, Jakarta is also home to the Indonesia's central government.
+  Pak Dengklek would like to research the structure of the central government.
+</p>
+<p>
+  There are $N$ members of the central government cabinet, numbered from $1$ to $N$.
+  For each member $i$ ($2 \leq i \leq N$), he/she is a direct subordinate of member $P_i$ ($1 \leq P_i \leq i - 1$).
+  Note that member $1$ is not a subordinate of anyone.
+  Let $b(i)$ denote the number of direct subordinates of member $i$.
+</p>
+<p>
+  For a proposal that is being discussed, each member must vote to either agree or disagree.
+  However, as per the cabinet rules, for each member $i$, exactly $D_i$ ($0 \leq D_i \leq b(i)$) of his/her direct subordinates must cast a different vote than member $i$. 
+</p>
+<p>
+  Each member $i$ has a influence level $W_i$.
+  For some voting result by all members, let the <b>dominance value</b> be the difference between the sum of influence levels of the members that agree and the sum of influence levels of the members that disagree.
+  Pak Dengklek would like to know the maximum possible dominance value.
+  Help Pak Dengklek calculate it!
+</p>
+
+<h3>Constraints</h3>
+
+<ul>
+  <li>$1 \leq N \leq 100\,000$</li>
+  <li>$1 \leq P_i \leq i - 1$</li>
+  <li>$1 \leq W_i \leq 10^9$</li>
+  <li>$0 \leq D_i \leq b(i)$</li>
+</ul>
+
+<h3>Subtasks</h3>
+
+<ol>
+  <li>&nbsp;&nbsp;(6 points) $D_i = 0$</li>
+  <li>(11 points) For each $i$, $D_i = 0$ or $D_i = b(i)$ holds.</li>
+  <li>(11 points) $P_i = 1$</li>
+  <li>(20 points) $N \leq 100$; $W_i = 1$</li>
+  <li>(22 points) $N \leq 2000$</li>
+  <li>
+    (13 points) For each $i$, one of the following constraints holds:
+    <ul>
+      <li>$b(i) = 0$; $D_i = 0$</li>
+      <li>$b(i) = 2$; $D_i = 1$</li>
+    </ul>
+  </li>
+  <li>(17 points) No additional constraints.</li>
+</ol>
+
+<h3>Input</h3>
+
+<p>
+  The input is given in the following format:
+</p>
+<pre>
+N
+P<sub>2</sub> P<sub>3</sub> &hellip; P<sub>N</sub>
+W<sub>1</sub> W<sub>2</sub> W<sub>3</sub> &hellip; W<sub>N</sub>
+D<sub>1</sub> D<sub>2</sub> D<sub>3</sub> &hellip; D<sub>N</sub>
+</pre>
+
+<h3>Output</h3>
+
+<p>
+  Output an integer representing the maximum possible dominance value.
+</p>
+
+<h3>Sample Input 1</h3>
+
+<pre>
+6
+1 1 3 3 3
+5 3 2 4 1 6
+1 0 2 0 0 0
+</pre>
+
+<h3>Sample Output 1</h3>
+
+<pre>
+15
+</pre>
+
+<h3>Explanation of Sample 1</h3>
+
+<p>
+  The following is an illustration of the structure of the central government cabinet members.
+</p>
+<p>
+  <img src="render/pusat.png" style="width: 200px;">
+</p>
+<p>
+  One possible voting result that yields the maximum dominance value is when members $1$, $2$, $4$, and $6$ agree, while members $3$ and $5$ disagree.
+  This result is valid since: 
+</p>
+<ul>
+  <li>Member $1$ has exactly $D_1 = 1$ direct subordinate that casts a different vote from him/herself, namely member $3$.</li>
+  <li>Member $3$ has exactly $D_3 = 2$ direct subordinate that casts a different vote from him/herself, namely member $4$ and $6$.</li>
+  <li>Other members do not have any direct subordinates.</li>
+</ul>
+<p>
+  <img src="render/pusatpilih.png" style="width: 200px;">
+</p>
+<p>
+  The dominance value is the difference between $W_1 + W_2 + W_4 + W_6 = 5 + 3 + 4 + 6 = 18$ and $W_3 + W_5 = 2 + 1 = 3$, which is $15$.
+</p>
+
+<h3>Sample Input 2</h3>
+
+<pre>
+3
+1 1
+2 6 5
+0 0 0
+</pre>
+
+<h3>Sample Output 2</h3>
+
+<pre>
+13
+</pre>
+
+<h3>Explanation of Sample 2</h3>
+
+<p>
+  The following is an illustration of the structure of the central government cabinet members.
+</p>
+<p>
+  <img src="render/pusat2.png" style="width: 200px;">
+</p>
+<p>
+  One possible voting result that yields the maximum dominance value is when all members disagree.
+  The dominance value is $13$.
+</p>

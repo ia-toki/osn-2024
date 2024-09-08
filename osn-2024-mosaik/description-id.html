@@ -1,0 +1,165 @@
+<!-- Title: Mosaik Monokrom -->
+
+<h3>Deskripsi</h3>
+
+<p>
+  Bu Dengklek memiliki sebuah mosaik berbentuk <em>grid</em> $N \times M$ yang tiap petaknya bisa berwarna putih atau hitam.
+  Baris-barisnya dinomori dari $1$ hingga $N$ dari atas ke bawah; kolom-kolomnya dinomori dari $1$ hingga $M$ dari kiri ke kanan.
+  Kita notasikan $(i, j)$ sebagai petak pada baris $i$ dan kolom $j$.
+  Pada awalnya, semua petak berwarna putih.
+</p>
+<p>
+  Dalam satu operasi, Bu Dengklek bisa melakukan salah satu aksi berikut:
+</p>
+<ul>
+  <li>Memilih satu baris, lalu mewarnai semua petak di baris tersebut dengan satu warna sama.</li>
+  <li>Memilih satu kolom, lalu mewarnai semua petak di kolom tersebut dengan satu warna sama.</li>
+</ul>
+<p>
+  Bu Dengklek memiliki rencana mosaik yang direpresentasikan dengan matriks $S$ berukuran $N \times M$ yang setiap elemennya berupa karakter <code>.</code> atau <code>#</code>.
+</p>
+<ul>
+  <li>Jika karakter $S_{i,j}$ adalah <code>.</code>, maka Bu Dengklek ingin petak $(i, j)$ berwarna putih pada akhirnya.</li>
+  <li>Jika karakter $S_{i,j}$ adalah <code>#</code>, maka Bu Dengklek ingin petak $(i, j)$ berwarna hitam pada akhirnya.</li>
+</ul>
+<p>
+  Dijamin bahwa rencana mosaik Bu Dengklek pasti bisa dibentuk hanya dengan operasi-operasi di atas.
+</p>
+<p>
+  Bu Dengklek ingin melakukan tak lebih dari $200\,000$ operasi untuk menghasilkan mosaik yang semirip mungkin dengan rencana.
+  Bantulah Bu Dengklek untuk mencari urutan operasi yang memaksimalkan banyaknya petak yang warnanya sesuai rencana!
+</p>
+
+<h3>Batasan</h3>
+
+<ul>
+  <li>$1 \leq N, M \leq 100\,000$</li>
+  <li>$N \times M \leq 2\,000\,000$</li>
+  <li>$S$ hanya berisi karakter <code>.</code> atau <code>#</code>.</li>
+  <li>Dijamin bahwa rencana mosaik pasti bisa dibentuk hanya dengan operasi-operasi di atas.</li>
+</ul>
+
+<h3>Informasi Tipe Soal</h3>
+
+<p>
+  Soal ini bertipe "output-only".
+  Untuk setiap kasus uji, Anda mencetak keluaran program ke dalam sebuah berkas keluaran.
+</p>
+<p>
+  Masukan untuk soal ini dapat diunduh di bagian lampiran yang terdapat di bagian bawah soal.
+  Di dalam berkas .zip tersebut terdapat $5$ masukan untuk diselesaikan: <code>mosaik_1.in</code>, <code>mosaik_2.in</code>, <code>mosaik_3.in</code>, <code>mosaik_4.in</code>, dan <code>mosaik_5.in</code>.
+</p>
+<p>
+  Untuk setiap berkas masukan yang diselesaikan (Anda tidak harus menyelesaikan semua masukan), buatlah berkas keluaran dengan nama <code>mosaik_T.out</code>, dengan <code>T</code> adalah nomor kasus uji.
+  Kemudian, kompres semua berkas keluaran ke dalam sebuah berkas .zip, lalu kumpulkan.
+</p>
+
+<h3>Masukan</h3>
+
+<p>
+  Masukan diberikan dalam format berikut:
+</p>
+<pre>
+N M
+S<sub>1,1</sub>S<sub>1,2</sub>&hellip;S<sub>1,N</sub>
+S<sub>2,1</sub>S<sub>2,2</sub>&hellip;S<sub>2,M</sub>
+&vellip;     &#x22f1; &vellip;
+S<sub>N,1</sub>S<sub>N,2</sub>&hellip;S<sub>N,M</sub>
+</pre>
+
+<h3>Keluaran</h3>
+
+<p>
+  Pada baris pertama, keluarkan sebuah bilangan bulat $Z$ ($0 \leq Z \leq 200\,000$) yang menyatakan banyaknya operasi yang dilakukan.
+</p>
+<p>
+  Kemudian, keluarkan $Z$ baris, dengan baris ke-$k$ menyatakan operasi ke-$k$.
+  Setiap baris berisi tiga bagian yang dipisahkan oleh spasi:
+</p>
+<ol>
+  <li>Sebuah string <code>BARIS</code> atau <code>KOLOM</code> yang menyatakan apakah operasinya dilakukan pada baris atau kolom.</li>
+  <li>Sebuah bilangan bulat yang menyatakan nomor baris/kolom yang dilakukan operasi.</li>
+  <li>Sebuah karakter <code>.</code> atau <code>#</code> yang menyatakan warna operasi, dengan <code>.</code> menyatakan putih dan <code>#</code> menyatakan hitam.</li>
+</ol>
+
+<h3>Penilaian</h3>
+
+<p>
+  Keluaran Anda akan mendapatkan nilai pada sebuah kasus uji jika keluaran Anda mengikuti format keluaran dan memenuhi batasan.
+</p>
+<p>
+  Untuk suatu kasus uji, setelah semua operasi dilakukan, jika $c$ adalah banyaknya petak yang warnanya sesuai dengan rencana, nilai Anda untuk kasus uji itu adalah $\left(\frac{c}{N \times M}\right)^3 \times 20$.
+  Nilai akhir adalah jumlah nilai semua kasus uji, yang kemudian dibulatkan ke bawah.
+</p>
+<p>
+  Jika suatu kasus uji mendapatkan nilai, Anda bisa melihat penilaiannya secara detail di halaman pengumpulan.
+  Anda bisa melihat banyaknya petak yang sesuai rencana untuk kasus uji tersebut.
+</p>
+
+<h3>Contoh Masukan</h3>
+
+<pre>
+6 9
+##.###.##
+.#.#.#.#.
+##.###.##
+.#.....#.
+#########
+##.###.##
+</pre>
+
+<h3>Contoh Keluaran</h3>
+
+<pre>
+5
+KOLOM 4 #
+KOLOM 6 #
+BARIS 4 .
+BARIS 3 #
+BARIS 1 #
+</pre>
+
+<h3>Penjelasan Contoh</h3>
+
+<p>
+  Berikut adalah rencana mosaik Bu Dengklek.
+</p>
+<p>
+  <img src="render/mosaik.png" style="width: 400px;">
+</p>
+<p>
+  Urutan operasi di atas akan mengubah mosaiknya seperti berikut.
+</p>
+<p>
+  <img src="render/mosaik0.png" style="width: 200px;">
+</p>
+<p>
+  <img src="render/mosaik1.png" style="width: 200px;">
+</p>
+<p>
+  <img src="render/mosaik2.png" style="width: 200px;">
+</p>
+<p>
+  <img src="render/mosaik3.png" style="width: 200px;">
+</p>
+<p>
+  <img src="render/mosaik4.png" style="width: 200px;">
+</p>
+<p>
+  <img src="render/mosaik5.png" style="width: 200px;">
+</p>
+<p>
+  Berikut adalah posisi petak-petak yang sesuai rencana.
+</p>
+<p>
+  <img src="render/mosaik5check.png" style="width: 400px;">
+</p>
+<p>
+  Oleh karena itu, nilai untuk kasus uji ini adalah $\left(\frac{34}{6 \times 9}\right)^3 \times 20 \approx 4.992$.
+</p>
+
+<h3>Lampiran</h3>
+
+<p>
+  Berkas masukan untuk soal ini dapat diunduh <a href="render/inputs.zip">di sini</a>.
+</p>

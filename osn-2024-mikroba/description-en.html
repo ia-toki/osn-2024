@@ -1,0 +1,439 @@
+<!-- Title: Ciliwung Microbes -->
+
+<h3>Description</h3>
+
+<p>
+  Bu Dengklek is working in a laboratory to research the water quality of the Ciliwung River.
+  Bu Dengklek took a sample of water from the Ciliwung River and placed it on a glass board.
+  The glass board has a rectangular shape and consists of squares arranged in $N$ rows (numbered $1$ to $N$ from top to bottom) and $M$ columns (numbered $1$ to $M$ from left to right).
+  Interestingly, $N$ and $M$ are <b>two distinct prime numbers</b>
+  Let square $(r, c)$ denote the square at row $r$ and column $c$.
+</p>
+<p>
+  There are two types of microbes: microbe-K and microbe-B.
+  Initially, there is at least one microbe on the entire glass board.
+  It is also known that for each square, it is guaranteed that there are at most $1$ microbe-K and at most $1$ microbe-B.
+  It is also guaranteed that there is at least one square with no microbes at all.
+</p>
+<p>
+  Bu Dengklek would like to collect all microbes off the board.
+  However, Bu Dengklek doesn't know the configuration of microbes on the board.
+  Bu Dengklek can use her microscope to observe her board.
+  This observation results in a matrix $A$ of size $N \times M$ where each of its elements is either $0$ or $1$.
+  If $A_{i,j} = 0$, then there are no microbes at all on square $(i, j)$. If $A_{i,j} = 1$, then there is at least one microbe on square $(i, j)$.
+</p>
+<p>
+  Initially, Bu Dengklek is observing her glass board.
+  As long as there are still microbes on the glass board, Bu Dengklek can perform the following two types of operations:
+</p>
+<ul>
+  <li>
+    <code>AKSELERASI T</code> (with $1 \leq T \leq 1000$) &mdash;
+    Bu Dengklek will accelerate the speed of all microbes for $T$ time units.
+    The following will happen:
+    <ul>
+      <li>
+        Each microbe-K will move <strong>right</strong> one square at a time for $T$ times. 
+        When a microbe at a rightmost square moves one square right, it will automatically move to the leftmost square on the same row during that one step.
+      </li>
+      <li>
+        Each microbe-B will move <strong>down</strong> one square at a time for $T$ times.
+        When a microbe at the bottommost square moves one square down, it will automatically move to the topmost square on the same column during that one step.
+      </li>
+      <li>
+        After all microbes finish moving, Bu Dengklek will use her microscope to observe the board.
+      </li>
+    </ul>
+  </li>
+  <li>
+    <code>EKSPERIMEN X Y</code> (with $1 \leq X \leq N$ and $1 \leq Y \leq M$) &mdash;
+     Bu Dengklek examines the water sample on square $(X, Y)$ that must contain at least one microbe.
+     With this, Bu Dengklek will obtain the information about the number of microbes on square $(X, Y)$.
+     After that, all microbes on that square will be collected from the board.
+  </li>
+</ul>
+<p>
+  Read the explanation of the sample interaction for more details.
+</p>
+<p>
+  Bu Dengklek must perform these operations in any order, <b>until there are no microbes left on the glass board</b>.
+  Because it takes quite a lot of time to perform <code>AKSELERASI</code>, Bu Dengklek can only perform <code>AKSELERASI</code> at most $1000$ times.
+</p>
+<p>
+  On the other hand, Bu Dengklek should not be careless in experiments.
+  An experiment is said to be <strong>successful</strong> if there is exactly $1$ microbe on the square being experimented, since if there are more than $1$ microbe, the microbial data may be mixed.
+</p>
+<p>
+  In the end, Bu Dengklek will be given a score depending on how accurate and efficient the operations she performed are, as will be explained in the scoring section.
+  Help Bu Dengklek get as high of a score as possible!
+</p>
+
+<h3>Constraints</h3>
+
+<ul>
+  <li>$2 \leq N, M \leq 23$</li>
+  <li>$N$ and $M$ are two distinct prime numbers.</li>
+  <li>Initially, there is at least one microbe.</li>
+  <li>Initially, for each square, there are at most $1$ microbe-K and at most $1$ microbe-B.</li>
+  <li>Initially, there is at least one square with no microbes at all.</li>
+</ul>
+
+<h3>Subtasks</h3>
+
+<ol>
+  <li>
+    <p>
+      &nbsp;&nbsp;(8 points) The initial configuration of the board looks as follows:
+    </p>
+    <p>
+      <img src="render/papan1.png" style="width: 200px;">
+    </p>
+    <p>
+      Note that this configuration is also used for the sample interaction below.
+    </p>
+  </li>
+  <li>(17 points) There is at least one row and at least one column with no microbes at all.</li>
+  <li>(19 points) There is at least one column with no microbes at all.</li>
+  <li>(30 points) There is a value $T$ such that an initial <code>AKSELERASI T</code> makes every square contain at most $1$ microbe.</li>
+  <li>(26 points) No additional constraints.</li>
+</ol>
+
+<h3>Problem Type Information</h3>
+
+<p>
+  This is an "interactive" problem.
+  In this problem, you will interact with the judge's program through standard input (stdin) and standard output (stdout).
+  See the following interaction format carefully.
+</p>
+
+<h3>Interaction Format</h3>
+
+<p>
+  In the beginning, you will be given $N$, $M$, and the initial board observation results $A$ in the following format:
+</p>
+<pre>
+N M
+A<sub>1,1</sub>A<sub>1,2</sub>&hellip;A<sub>1,N</sub>
+A<sub>2,1</sub>A<sub>2,2</sub>&hellip;A<sub>2,M</sub>
+&vellip;     &#x22f1; &vellip;
+A<sub>N,1</sub>A<sub>N,2</sub>&hellip;A<sub>N,M</sub>
+</pre>
+<p>
+  To perform an <code>AKSELERASI</code> operation for some value $T$ ($1 \leq T \leq 1000$), you can output to the standard output in the following format:
+</p>
+<pre>
+AKSELERASI T
+</pre>
+<p>
+  For each of these outputs, the board observation results $A$ after this operation will be given from standard input in the following format:
+</p>
+<pre>
+A<sub>1,1</sub>A<sub>1,2</sub>&hellip;A<sub>1,N</sub>
+A<sub>2,1</sub>A<sub>2,2</sub>&hellip;A<sub>2,M</sub>
+&vellip;     &#x22f1; &vellip;
+A<sub>N,1</sub>A<sub>N,2</sub>&hellip;A<sub>N,M</sub>
+</pre>
+<p>
+  To perform an <code>EKSPERIMEN</code> operation for some square $(X, Y)$ ($1 \leq X \leq N$; $1 \leq Y \leq M$) containing at least one microbe, you can output to the standard output in the following format:
+</p>
+<pre>
+EKSPERIMEN X Y
+</pre>
+<p>
+  For each of these outputs, the experiment results will be given from the standard input in the following format:
+</p>
+<pre>
+Z
+</pre>
+<p>
+  This means that there are $Z$ microbes on square $(X, Y)$.
+</p>
+<p>
+  As soon as there are no microbes on the board, the interaction between your program and the judge's program must be immediately terminated.
+  You must not terminate if there are still microbes on the board.
+</p>
+
+<h3>Scoring</h3>
+
+<p>
+  Bu Dengklek calculates two scores, $\text{AKURASI}$ and $\text{EFISIENSI}$
+</p>
+<ul>
+  <li>
+    $\text{AKURASI}$ denotes how accurately Bu Dengklek performed her experiments.
+    If $\text{SUKSES}$ denotes the the number of Bu Dengklek's experiments that are successful, and $\text{TOTAL}$ denotes the total number of microbes on the board initially, then $\text{AKURASI} = \left(\frac{\text{SUKSES}}{\text{TOTAL}}\right)^3 \times 100\%$
+  </li>
+  <li>
+    $\text{EFISIENSI}$ denotes how efficiently Bu Dengklek can use her time to perform as few <code>AKSELERASI</code> operations as possible.
+    If $\text{ACC}$ denotes the number of <code>AKSELERASI</code> operations performed by Bu Dengklek, then the $\text{EFISIENSI}$ score is calculated according to the following table:
+    <table border="1">
+      <thead>
+        <th>Condition</th>
+        <th>$\text{EFISIENSI}$</th>
+      </thead>
+      <tbody style="text-align: center;">
+        <tr>
+          <td style="text-align: left;">$1000 &lt; \text{ACC}$</td>
+          <td>$0\%$</td>
+        </tr>
+        <tr>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$9 &lt; \text{ACC} \leq 1000$</td>
+          <td>$(100 - 5 \times \log_2(\text{ACC} - 8))\%$</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">$\text{ACC} \leq 9$&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          <td>$100\%$</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+<p>
+  Bu Dengklek's $\text{PERFORMA}$ score in the end is the product of these two scores: $\text{PERFORMA} = \text{AKURASI} \times \text{EFISIENSI}$.
+  For example, if Bu Dengklek has an $\text{AKURASI}$ score of $80\%$ and an $\text{EFISIENSI}$ score of $75\%$, then Bu Dengklek's $\text{PERFORMA}$ score is $80\% \times 75\% = 60\%$
+</p>
+<p>
+  For each test case, your program will be graded on its $\text{PERFORMA}$ score.
+  Each subtask consists of multiple test cases.
+  For each subtask, the smallest \text{PERFORMA}$ score will be considered for grading.
+  The points obtained from a subtask is the product of the smallest $\text{PERFORMA}$ score and the subtask's points. 
+  The final score is the sum of the scores of all subtasks, which is then rounded down.
+</p>
+<p>
+  Your program may receive "Wrong Answer" or "Time Limit Exceeded" if it:
+</p>
+<ul>
+  <li>performs <code>AKSELERASI</code> for more than $1000$ times,</li>
+  <li>produces an output in a wrong format or outside of the constraints,</li>
+  <li>performs an experiment on a square with no microbes,</li>
+  <li>does not perform the interaction according to the format, for example, not reading from the standard input immediately after performing an operation.</li>
+  <li>does not output any more operations while there are still microbes on the board, or
+  <li>continues to output more operations while there are no more microbes on the board.</li>
+</ul>
+<p>
+  If a test case is successfully executed, you can see its detailed scoring in the submission page.
+  You can also see the scores of \text{AKURASI}$, $\text{EFISIENSI}$, and $\text{PERFORMA}$ for that test case.
+</p>
+<p>
+  The grader is <b>not adaptive</b>.
+  In other words, the configuration of microbes is set before the interaction begins.
+</p>
+
+<h3>Sample Interaction</h3>
+
+<p>
+  The following is a possible sample interaction under a certain board configuration.
+  Note that the information about the board configuration is not known by your program and is only displayed to help you understand the sample interaction.
+</p>
+
+<table>
+  <tr>
+    <th>Input</th>
+    <th>Output</th>
+    <th>Board Configuration</th>
+  </tr>
+  <tr>
+    <td>
+<pre>
+3 5
+10011
+00101
+10101
+</pre>
+    </td>
+    <td></td>
+    <td>
+      <img src="render/papan1.png" style="width: 200px;">
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><pre>AKSELERASI 1</pre></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>
+<pre>
+11001
+10011
+10010
+</pre>
+    </td>
+    <td></td>
+    <td>
+      <img src="render/papan2.png" style="width: 200px;">
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><pre>AKSELERASI 1</pre></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>
+<pre>
+10100
+11001
+11011
+</pre>
+    </td>
+    <td></td>
+    <td>
+      <img src="render/papan3.png" style="width: 200px;">
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><pre>EKSPERIMEN 2 5</pre></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><pre>1</pre></td>
+    <td></td>
+    <td>
+      <img src="render/papan4.png" style="width: 200px;">
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><pre>EKSPERIMEN 3 5</pre></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><pre>2</pre></td>
+    <td></td>
+    <td>
+      <img src="render/papan5.png" style="width: 200px;">
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><pre>EKSPERIMEN 1 1</pre></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><pre>1</pre></td>
+    <td></td>
+    <td>
+      <img src="render/papan6.png" style="width: 200px;">
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><pre>AKSELERASI 4</pre></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>
+<pre>
+11010
+10000
+10000
+</pre>
+    </td>
+    <td></td>
+    <td>
+      <img src="render/papan7.png" style="width: 200px;">
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><pre>EKSPERIMEN 3 1</pre></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><pre>2</pre></td>
+    <td></td>
+    <td>
+      <img src="render/papan8.png" style="width: 200px;">
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><pre>AKSELERASI 1000</pre></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>
+<pre>
+01000
+10010
+00000
+</pre>
+    </td>
+    <td></td>
+    <td>
+      <img src="render/papan9.png" style="width: 200px;">
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><pre>EKSPERIMEN 1 2</pre></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><pre>1</pre></td>
+    <td></td>
+    <td>
+      <img src="render/papan10.png" style="width: 200px;">
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><pre>EKSPERIMEN 2 4</pre></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><pre>1</pre></td>
+    <td></td>
+    <td>
+      <img src="render/papan11.png" style="width: 200px;">
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><pre>EKSPERIMEN 2 1</pre></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><pre>2</pre></td>
+    <td></td>
+    <td>
+      <img src="render/papan12.png" style="width: 200px;">
+    </td>
+  </tr>
+  <tr>
+    <td>(end)</td>
+    <td>(end)</td>
+    <td></td>
+  </tr>
+</table>
+
+<p>
+  In the sample above, Bu Dengklek successfully performs $4$ successful experiments.
+  In total, there are $10$ microbes on the initial board. 
+  Hence, Bu Dengklek's $\text{AKURASI}$ is $\left(\frac{4}{10}\right)^3 \times 100\% = 6.4\%$.
+</p>
+<p>
+  Bu Dengklek performs the <code>AKSELERASI</code> operation $4$ times. 
+  To calculate $\text{EFISIENSI}$, it can be seen from the table that since the number of <code>AKSELERASI</code> operations does not exceed $9$, then her $\text{EFISIENSI}$ score is $100\%$.
+</p>
+<p>
+  In the end, Bu Dengklek's $\text{PERFORMA}$ score is the product of both, $\text{PERFORMA} = \text{AKURASI} \times \text{EFISIENSI} = 6.4\% \times 100\% = 6.4\%$.
+</p>
+
+<h3>Warning</h3>
+
+<p>
+  Always <em>flush</em> after each output.
+</p>
+<ul>
+  <li>
+    For <code>stdio.h</code>(<code>cstdio</code>) library:
+    <pre>fflush(stdout);</pre>
+  </li>
+  <li>
+    For <code>iostream</code> library:
+    <pre>std::cout &lt;&lt; std::flush;</pre>
+  </li>
+</ul>

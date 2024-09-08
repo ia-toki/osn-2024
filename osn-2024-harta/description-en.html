@@ -1,0 +1,236 @@
+<!-- Title: National Treasure -->
+
+<h3>Description</h3>
+
+<p>
+  There are $N$ plots of land numbered from $1$ to $N$ arranged in a circle.
+  Plot $i$ is immediately to the left of plot $i + 1$ for each $1 \leq i \leq N - 1$, and plot $N$ is immediately to the left of plot $1$.
+</p>
+<p>
+  Bu Dengklek knows that exactly one of the $N$ plots contains a treasure and she wants to find the location of that plot.
+  To assist her search, on each plot $i$, Bu Dengklek installed a machine numbered $i$.
+</p>
+<p>
+  In one operation, Bu Dengklek can choose an integer $k$ and activates $k$ different machines.
+  After that, Bu Dengklek will obtain information about the shortest distance between the nearest active machine and the treasure.
+  This operation costs $\left\lceil\frac{N}{k}\right\rceil$ Kwakkoins.
+  After the operation, all active machines are deactivated again.
+</p>
+<p>
+  Bu Dengklek has only $512$ Kwakkoins.
+  Help Bu Dengklek find the location of the plot containing the treasure!
+</p>
+<p>
+  Note:
+</p>
+<ul>
+  <li>Formally, the shortest distance between plot $x$ and plot $y$ ($x \leq y$) is the minimum of $y - x$ and $N - (y - x)$.</li>
+  <li>$\lceil w\rceil$ for a real number $w$ denotes the value of $w$ rounded up.</li>
+</ul>
+
+<h3>Constraints</h3>
+
+<ul>
+  <li>$N = 256$</li>
+</ul>
+
+<h3>Subtasks</h3>
+
+<ol>
+  <li>&nbsp;&nbsp;(9 points) The treasure is located on plot $1$.</li>
+  <li>(15 points) The treasure is located on one of the plots $1$ through $3$ inclusive.</li>
+  <li>(33 points) The treasure is located on one of the plots $1$ through $128$ inclusive.</li>
+  <li>(43 points) No additional constraints.</li>
+</ol>
+
+<h3>Problem Type Information</h3>
+
+<p>
+  This is an "interactive" problem.
+  In this problem, you will interact with the judge's program through the standard input (stdin) and the standard output (stdout).
+  See the following interaction format carefully.
+</p>
+
+<h3>Interaction Format</h3>
+
+<p>
+  To perform an operation that activates $k$ machines $a_1$, $a_2$, ..., $a_k$ ($1 \leq a_1 &lt; a_2 &lt; \ldots &lt; a_K \leq N$), you can output to the standard output in the following format:
+</p>
+<pre>
+TANYA k
+a<sub>1</sub> a<sub>2</sub> &hellip; a<sub>k</sub>
+</pre>
+<p>
+Note that the machine numbers must be <b>strictly increasing</b>.
+</p>
+<p>
+For each operation, you will be given the answer from the standard input in the following format:
+</p>
+<pre>
+d
+</pre>
+<p>
+This means, the shortest distance between an active machine and the treasure is $d$.
+</p>
+<p>
+If you have located the treasure, for example on plot $z$, you can output to the standard output in the following format:
+</p>
+<pre>
+JAWAB z
+</pre>
+
+<h3>Scoring</h3>
+
+<p>
+  Each operation that activates $k$ machines costs $\left\lceil\frac{N}{k}\right\rceil$ Kwakkoins.
+  Let $C$ denote the total Kwakkoins over all operations.
+  A $\text{PERFORMA}$ score is computed according to the following table:
+</p>
+<table border="1">
+  <thead>
+    <th>Condition</th>
+    <th>$\text{PERFORMA}$</th>
+  </thead>
+  <tbody style="text-align: center;">
+    <tr>
+      <td style="text-align: left;">$512 &lt; C$</td>
+      <td>$0\%$</td>
+    </tr>
+    <tr>
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;$6 &lt; C \leq 512$</td>
+      <td>$(100 - 5 \times \log_2(C - 5))\%$</td>
+    </tr>
+    <tr>
+      <td style="text-align: right;">$C \leq 6$&nbsp;&nbsp;&nbsp;&nbsp;</td>
+      <td>$100\%$</td>
+    </tr>
+  </tbody>
+</table>
+<p>
+  For each test case, its $\text{PERFORMA}$ score is computed.
+  Each subtask consists of multiple test cases.
+  For each subtask, the smallest $\text{PERFORMA}$ score will be taken.
+  The score for a subtask is the product of the smallest $\text{PERFORMA}$ score and the subtask points.
+  The final score is the sum of the scores of all subtasks, which is then rounded down.
+</p>
+<p>
+  Your program will receive "Wrong Answer" if it:
+</p>
+<ul>
+  <li>uses more than $512$ Kwakkoins, or</li>
+  <li>produces an output in a wrong format or outside of the constraints.</li>
+</ul>
+<p>
+  If a test case is successfully executed, you can see its detailed scoring in the submission page.
+  You can also view the total Kwakkoins used for that test case.
+</p>
+<p>
+  The grader is <b>not adaptive</b>.
+  In other words, the location of the plot that contains the treasure is fixed before the interaction begins.
+</p>
+
+<h3>Sample Interaction</h3>
+
+<p>
+  The following is a possible sample interaction.
+  In this example, the treasure is located on plot $42$.
+</p>
+<table>
+  <tr>
+    <th>Input</th>
+    <th>Output</th>
+    <th>Explanation</th>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+<pre>
+TANYA 3
+2 5 6
+</pre>
+    </td>
+    <td>
+      This operation activates machines $2$, $5$, and $6$. This operation costs $\left\lceil\frac{256}{3}\right\rceil = 86$ Kwakkoins.
+    </td>
+  </tr>
+  <tr>
+    <td><pre>36</pre>
+    </td>
+    <td></td>
+    <td>
+      The active machine that is closest to the treasure is machine $6$ with distance $6$.
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+<pre>
+TANYA 2
+196 234
+</pre>
+    </td>
+    <td>
+      This operation activates machines $196$ and $234$. This operation costs $\left\lceil\frac{256}{2}\right\rceil = 128$ Kwakkoins.
+    </td>
+  </tr>
+  <tr>
+    <td><pre>64</pre>
+    </td>
+    <td></td>
+    <td>
+      The active machine that is closest to the treasure is machine $234$ with distance $64$.
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+<pre>
+TANYA 4
+26 52 78 104
+</pre>
+    </td>
+    <td>
+      This operation activates machines $26$, $52$, $78$, and $104$. This operation costs $\left\lceil\frac{256}{4}\right\rceil = 64$ Kwakkoins.
+    </td>
+  </tr>
+  <tr>
+    <td><pre>10</pre>
+    </td>
+    <td></td>
+    <td>
+      The active machine that is closest to the treasure is machine $52$ with distance $10$.
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><pre>JAWAB 42</pre></td>
+    <td>
+      Answering that the treasure is on plot $42$.
+    </td>
+  </tr>
+  <tr>
+    <td>(end)</td>
+    <td>(end)</td>
+    <td></td>
+  </tr>
+</table>
+<p>
+  In the sample above, the total Kwakkoins used is $86 + 128 + 64 = 278$.
+  Since $6 &lt; 278 \leq 512$ holds, then the $\text{PERFORMA}$ score is $(100 - 5 \times \log_2(278 - 5))\% \approx 59.536\%$.
+</p>
+
+<h3>Warning</h3>
+
+<p>
+  Always <em>flush</em> after each output.
+</p>
+<ul>
+  <li>
+    For <code>stdio.h</code>(<code>cstdio</code>) library:
+    <pre>fflush(stdout);</pre>
+  </li>
+  <li>
+    For <code>iostream</code> library:
+    <pre>std::cout &lt;&lt; std::flush;</pre>
+  </li>
+</ul>

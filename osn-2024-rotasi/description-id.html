@@ -1,0 +1,143 @@
+<!-- Title: Pertahanan Batavia -->
+
+<h3>Deskripsi</h3>
+
+<p style="text-align: center;">
+  <img src="render/bamburuncing.png" style="width: 400px;">
+</p>
+<p>
+  Si Pitung sedang memimpin pasukan prajuritnya untuk mempertahankan Batavia.
+  Terdapat $N$ prajurit yang sedang berbaris pada satu baris.
+  Awalnya, prajurit pada urutan ke-$i$ dari depan barisan memiliki kekuatan $A_i$.
+</p>
+<p>
+  Si Pitung bisa melakukan dua jenis komando:
+</p>
+<ul>
+  <li>
+    Komando perputaran:
+    komandokan prajurit paling belakang untuk berpindah ke paling depan barisan.
+  </li>
+  <li>
+    Komando penambahan:
+    tambahkan satu prajurit baru dengan kekuatan berapa pun ke paling belakang barisan.
+  </li>
+</ul>
+<p>
+  Si Pitung memiliki suatu bilangan bulat $K$.
+  Untuk suatu barisan berisi $c$ prajurit, suatu interval $[x, y]$ ($1 \leq x \leq y \leq c$) dikatakan <b>kokoh</b> jika dan hanya jika kedua syarat berikut terpenuhi:
+</p>
+<ul>
+  <li>
+    $y - x + 1 = K$, dan
+  </li>
+  <li>
+    untuk setiap bilangan bulat $p$ dari $x$ sampai dengan $y$, terdapat prajurit dengan kekuatan $p$ pada posisi ke-$q$ dari depan barisan, yang memenuhi $x \leq q \leq y$.
+  </li>
+</ul>
+<p>
+  Si Pitung ingin melakukan nol atau lebih komando supaya barisan prajuritnya memiliki setidaknya satu interval kokoh.
+  Komando perputaran bisa dilakukan sebanyak yang Si Pitung inginkan, tetapi komando penambahan membutuhkan banyak perencanaan supaya bisa dilakukan.
+  Berapakah banyaknya <b>komando penambahan</b> minimum yang perlu dilakukan Si Pitung supaya barisan prajuritnya memiliki setidaknya satu interval kokoh?
+</p>
+
+<h3>Batasan</h3>
+
+<ul>
+  <li>$1 \leq K \leq N \leq 300\,000$</li>
+  <li>$1 \leq A_i \leq N$</li>
+</ul>
+
+<h3>Subsoal</h3>
+
+<ol>
+  <li>
+    &nbsp;&nbsp;(5 poin) Hanya berisi kasus uji berikut:</br>
+<pre>
+10 4
+1 7 8 4 5 1 7 8 2 4
+</pre>
+  </li>
+  <li>(13 poin) $K \leq 3$</li>
+  <li>(20 poin) $N \leq 50$</li>
+  <li>(21 poin) $N \leq 3000$</li>
+  <li>(20 poin) $N \leq 80\,000$</li>
+  <li>(21 poin) Tidak ada batasan tambahan.</li>
+</ol>
+
+<h3>Masukan</h3>
+
+<p>
+  Masukan diberikan dalam format berikut:
+</p>
+<pre>
+N K
+A<sub>1</sub> A<sub>2</sub> &hellip; A<sub>N</sub>
+</pre>
+
+<h3>Keluaran</h3>
+
+<p>
+  Keluarkan sebuah bilangan bulat yang menyatakan banyaknya komando penambahan minimum yang perlu dilakukan Si Pitung supaya barisan prajuritnya memiliki setidaknya satu interval kokoh.
+</p>
+
+<h3>Contoh Masukan</h3>
+
+<pre>
+4 3
+1 4 4 1
+</pre>
+
+<h3>Contoh Keluaran</h3>
+
+<pre>
+2
+</pre>
+
+<h3>Penjelasan Contoh</h3>
+
+<p>
+  Si Pitung bisa melakukan urutan komando berikut, yang berisi $2$ komando penambahan:
+</p>
+<ol>
+  <li>
+    Komando perputaran.
+    Barisan menjadi $[1, 1, 4, 4]$.
+  </li>
+  <li>
+    Komando penambahan prajurit berkekuatan $3$.
+    Barisan menjadi $[1, 1, 4, 4, 3]$.
+  </li>
+  <li>
+    Komando perputaran.
+    Barisan menjadi $[3, 1, 1, 4, 4]$.
+  </li>
+  <li>
+    Komando perputaran.
+    Barisan menjadi $[4, 3, 1, 1, 4]$.
+  </li>
+  <li>
+    Komando penambahan prajurit berkekuatan $5$.
+    Barisan menjadi $[4, 3, 1, 1, 4, 5]$.
+  </li>
+  <li>
+    Komando perputaran.
+    Barisan menjadi $[5, 4, 3, 1, 1, 4]$.
+  </li>
+  <li>
+    Komando perputaran.
+    Barisan menjadi $[4, 5, 4, 3, 1, 1]$.
+  </li>
+  <li>
+    Komando perputaran.
+    Barisan menjadi $[1, 4, 5, 4, 3, 1]$.
+  </li>
+</ol>
+<p>
+  Setelah melakukan semua komando di atas, interval $[3, 5]$ adalah interval kokoh karena hal-hal berikut terpenuhi:
+</p>
+<ul>
+  <li>Terdapat prajurit dengan kekuatan $3$ pada posisi $5$ ($3 \leq 5 \leq 5$).</li>
+  <li>Terdapat prajurit dengan kekuatan $4$ pada posisi $4$ ($3 \leq 4 \leq 5$).</li>
+  <li>Terdapat prajurit dengan kekuatan $5$ pada posisi $3$ ($3 \leq 3 \leq 5$).</li>
+</ul>

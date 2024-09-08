@@ -1,0 +1,143 @@
+<!-- Title: Batavia Defense -->
+
+<h3>Description</h3>
+
+<p style="text-align: center;">
+  <img src="render/bamburuncing.png" style="width: 400px;">
+</p>
+<p>
+  Si Pitung is leading his troops to defend Batavia.
+  There are $N$ soldiers lined up in one line.
+  Initially, the soldier at position $i$ from the front has power $A_i$.
+</p>
+<p>
+  Si Pitung can carry out two types of commands:
+</p>
+<ul>
+  <li>
+    Rotation command:
+    command the soldier at the end of the line to move to the front of the line.
+  </li>
+  <li>
+    Extension command:
+    add a new soldier with any power to the end of the line.
+  </li>
+</ul>
+<p>
+  Si Pitung has an integer $K$.
+  For a line consisting of $c$ soldiers, an interval $[x, y]$ ($1 \leq x \leq y \leq c$) is <b>solid</b> if and only if both of these requirements are satisfied:
+</p>
+<ul>
+  <li>
+    $y - x + 1 = K$, and
+  </li>
+  <li>
+    for each integer $p$ from $x$ to $y$, there is a soldier with power $p$ at position $q$ from the front of the line, satisfying $x \leq q \leq y$.
+  </li>
+</ul>
+<p>
+  Si Pitung would like to carry out zero or more commands so his soldier lineup has at least one solid interval.
+  Rotation commands can be carried out as many times as Si Pitung wants, however extension commands require more planning to be carried out.
+  What is the minimum number of <b>extension commands</b> that has to be carried out by Si Pitung so that his soldier lineup has at least one solid interval?
+</p>
+
+<h3>Constraints</h3>
+
+<ul>
+  <li>$1 \leq K \leq N \leq 300\,000$</li>
+  <li>$1 \leq A_i \leq N$</li>
+</ul>
+
+<h3>Subtasks</h3>
+
+<ol>
+  <li>
+    &nbsp;&nbsp;(5 points) Contains only the following test case:</br>
+<pre>
+10 4
+1 7 8 4 5 1 7 8 2 4
+</pre>
+  </li>
+  <li>(13 points) $K \leq 3$</li>
+  <li>(20 points) $N \leq 50$</li>
+  <li>(21 points) $N \leq 3000$</li>
+  <li>(20 points) $N \leq 80\,000$</li>
+  <li>(21 points) No additional constraints.</li>
+</ol>
+
+<h3>Input</h3>
+
+<p>
+  The input is given with the following format:
+</p>
+<pre>
+N K
+A<sub>1</sub> A<sub>2</sub> &hellip; A<sub>N</sub>
+</pre>
+
+<h3>Output</h3>
+
+<p>
+  Output an integer representing the minimum number of extension commands that has to be carried out by Si Pitung so that his soldier lineup has at least one solid interval.
+</p>
+
+<h3>Sample Input</h3>
+
+<pre>
+4 3
+1 4 4 1
+</pre>
+
+<h3>Sample Output</h3>
+
+<pre>
+2
+</pre>
+
+<h3>Explanation of Sample</h3>
+
+<p>
+  Si Pitung can carry out the following commands, consisting of $2$ extension commands:
+</p>
+<ol>
+  <li>
+    Rotation command.
+    The lineup becomes $[1, 1, 4, 4]$.
+  </li>
+  <li>
+    Extension command for a soldier of power $3$.
+    The lineup becomes $[1, 1, 4, 4, 3]$.
+  </li>
+  <li>
+    Rotation command.
+    The lineup becomes $[3, 1, 1, 4, 4]$.
+  </li>
+  <li>
+    Rotation command.
+    The lineup becomes $[4, 3, 1, 1, 4]$.
+  </li>
+  <li>
+    Extension command for a soldier of power $5$.
+    The lineup becomes $[4, 3, 1, 1, 4, 5]$.
+  </li>
+  <li>
+    Rotation command.
+    The lineup becomes $[5, 4, 3, 1, 1, 4]$.
+  </li>
+  <li>
+    Rotation command.
+    The lineup becomes $[4, 5, 4, 3, 1, 1]$.
+  </li>
+  <li>
+    Rotation command.
+    The lineup becomes $[1, 4, 5, 4, 3, 1]$.
+  </li>
+</ol>
+<p>
+  After carrying out all the commands above, the interval $[3, 5]$ is a solid interval since the following conditions are satisfied:
+</p>
+<ul>
+  <li>There is a soldier with power $3$ at position $5$ ($3 \leq 5 \leq 5$).</li>
+  <li>There is a soldier with power $4$ at position $4$ ($3 \leq 5 \leq 5$).</li>
+  <li>There is a soldier with power $5$ at position $3$ ($3 \leq 5 \leq 5$).</li>
+</ul>

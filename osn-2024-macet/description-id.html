@@ -1,0 +1,156 @@
+<!-- Title: Mobil Manual -->
+
+<h3>Deskripsi</h3>
+
+<p>
+  Jakarta terkenal dengan lalu lintasnya yang ramai dan padat.
+  Bu Dengklek sering terganggu dengan keadaan ini, apalagi karena mobilnya merupakan mobil manual yang memiliki banyak posisi gigi.
+</p>
+<p style="text-align: center;">
+  <img src="render/mobilmanual.png" style="width: 400px; border-radius: 20px;">
+</p>
+<p>
+  Mobil Bu Dengklek mempunyai $N$ posisi gigi, dinomori dari $1$ hingga $N$.
+  Di saat kapan pun, mobilnya hanya bisa berada di salah satu posisi gigi.
+  Jika mobilnya berada di posisi gigi $i$, kecepatannya hanya bisa bernilai antara $L_i$ dan $R_i$ inklusif.
+</p>
+<p>
+  Bu Dengklek ingin menyetir mobilnya selama $M$ menit.
+  Pada menit ke-$i$, dia ingin mobilnya berkecepatan $A_i$.
+  Awalnya, Bu Dengklek memilih <b>posisi gigi bebas untuk posisi gigi awal</b> mobilnya.
+  Di antara setiap menit, Bu Dengklek bisa memilih untuk mengubah posisi giginya.
+  Pada setiap menit, posisi gigi saat itu harus bisa mengakomodasi kecepatan saat itu.
+</p>
+<p>
+  Berpindah-pindah gigi setiap menit berisiko tinggi merusak mekanisme gigi mobil Bu Dengklek.
+  Oleh karena itu, dia ingin meminimumkan banyaknya perubahan gigi.
+  Berapakah banyaknya perubahan gigi minimum yang mungkin?
+  Atau laporkan jika mustahil untuk memenuhi semua syarat kecepatan!
+</p>
+
+<h3>Batasan</h3>
+
+<ul>
+  <li>$1 \leq N, M \leq 100\,000$</li>
+  <li>$1 \leq L_i \leq R_i \leq 10^9$</li>
+  <li>$1 \leq A_i \leq 10^9$</li>
+</ul>
+
+<h3>Subsoal</h3>
+
+<ol>
+  <li>&nbsp;&nbsp;(5 poin) $N = 1$; $M = 1$</li>
+  <li>(15 poin) $R_i &lt; L_{i + 1}$</li>
+  <li>(19 poin) $N, M \leq 100$</li>
+  <li>(11 poin) $N, M \leq 2000$</li>
+  <li>(15 poin) $L_i &lt; L_{i + 1}$; $R_i &lt; R_{i + 1}$; $A_i \leq A_{i + 1}$</li>
+  <li>(16 poin) $A_i \leq A_{i + 1}$</li>
+  <li>(19 poin) Tidak ada batasan tambahan.</li>
+</ol>
+
+<h3>Masukan</h3>
+
+<p>
+  Masukan diberikan dalam format berikut:
+</p>
+<pre>
+N
+L<sub>1</sub> R<sub>1</sub>
+L<sub>2</sub> R<sub>2</sub>
+&vellip;
+L<sub>N</sub> R<sub>N</sub>
+M
+A<sub>1</sub> A<sub>2</sub> &hellip; A<sub>M</sub>
+</pre>
+
+<h3>Keluaran</h3>
+
+<p>
+  Keluarkan sebuah bilangan bulat yang menyatakan banyaknya perubahan gigi minimum yang mungkin, atau <code>-1</code> jika mustahil untuk memenuhi semua syarat kecepatan.
+</p>
+
+<h3>Contoh Masukan 1</h3>
+
+<pre>
+4
+1 4
+7 7
+6 9
+8 10
+6
+3 8 10 2 7 7
+</pre>
+
+<h3>Contoh Keluaran 1</h3>
+
+<pre>
+3
+</pre>
+
+<h3>Penjelasan Contoh 1</h3>
+
+<p>
+  Bu Dengklek bisa melakukan strategi berikut:
+</p>
+<ol>
+  <li>Tetapkan posisi gigi awal $1$.</li>
+  <li>Menit $1$ terpenuhi karena $1 \leq 3 \leq 4$.</li>
+  <li>Ubah ke posisi gigi $4$.</li>
+  <li>Menit $2$ terpenuhi karena $8 \leq 8 \leq 10$.</li>
+  <li>Menit $3$ terpenuhi karena $8 \leq 10 \leq 10$.</li>
+  <li>Ubah ke posisi gigi $1$.</li>
+  <li>Menit $4$ terpenuhi karena $1 \leq 2 \leq 4$.</li>
+  <li>Ubah ke posisi gigi $2$.</li>
+  <li>Menit $5$ terpenuhi karena $7 \leq 7 \leq 7$.</li>
+  <li>Menit $6$ terpenuhi karena $7 \leq 7 \leq 7$.</li>
+</ol>
+<p>
+  Terjadi $3$ perubahan gigi.
+</p>
+
+<h3>Contoh Masukan 2</h3>
+
+<pre>
+3
+1 1000
+1000 1000000
+1000000 1000000000
+7
+2 5 6 25 26 65 265
+</pre>
+
+<h3>Contoh Keluaran 2</h3>
+
+<pre>
+0
+</pre>
+
+<h3>Penjelasan Contoh 2</h3>
+
+<p>
+  Bu Dengklek bisa menetapkan posisi gigi awal $1$, dan tidak mengubah gigi sepanjang perjalanan.
+</p>
+
+<h3>Contoh Masukan 3</h3>
+
+<pre>
+4
+1 4
+7 7
+6 9
+8 10
+6
+2 10 3 5 7 6
+</pre>
+
+<h3>Contoh Keluaran 3</h3>
+
+<pre>
+-1
+</pre>
+
+<h3>Penjelasan Contoh 3</h3>
+
+<p>
+  Mustahil bagi Bu Dengklek untuk memenuhi semua syarat kecepatan.
+</p>

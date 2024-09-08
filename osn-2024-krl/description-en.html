@@ -1,0 +1,199 @@
+<!-- Title: Electric Railway Trains -->
+
+<h3>Description</h3>
+
+<p>
+  In Jakarta, there are $N$ electric railway train stations lined up in a straight line, numbered from $1$ to $N$.
+</p>
+<p>
+  There are $M$ train routes with their own dedicated tracks, numbered from $1$ to $M$.
+  The $i$-th route consists of four numbers $A_i$, $B_i$, $C_i$, and $D_i$.
+  The train for the $i$-th route travels both ways between stations $A_i$ and $B_i$ ($A_i &lt; B_i$).
+  Each route serves two lines:
+</p>
+<ul>
+  <li>
+  	Commuter line: the train stops at every station between $A_i$ and $B_i$ inclusive.
+  	The trip from station $x$ to station $y$ ($A_i \leq x, y \leq B_i$) costs $C_i \times |x - y|$.
+  </li>
+  <li>
+  	Express line: the train only stops at stations $A_i$ and $B_i$.
+  	The trip from station $A_i$ to station $B_i$ (or vice versa) costs $D_i$.
+  </li>
+</ul>
+<p>
+  To board a train, we need to buy a travel pass which costs $T$ at the departure station. 
+  However, <b>inter-train transfer is free of charge</b>.
+  If we end a train trip at a station and immediately board another train from that station, we can still use the same travel pass and there is no need to buy another pass.
+  Upon exiting a station, the travel pass expires and we need to buy a new pass at the next station if we want to board a train again. 
+</p>
+<p>
+  Outside the stations, there is also a city bus route which covers all stations.
+  A bus trip from station $x$ to station $y$ costs $K \times |x - y|$.
+</p>
+<p>
+  Bu Dengklek would like to travel from station $P$ to station $Q$ using trains or bus (or a combination of both).
+  What is the lowest possible total cost?
+</p>
+<p>
+  Note: $|x - y|$ denotes the difference of $x$ and $y$.
+</p>
+
+<h3>Constraints</h3>
+
+<ul>
+  <li>$2 \leq N \leq 100\,000$</li>
+  <li>$1 \leq M \leq 200\,000$</li>
+  <li>$1 \leq K \leq 100\,000$</li>
+  <li>$0 \leq T \leq 100\,000$</li>
+  <li>$1 \leq P, Q \leq N$</li>
+  <li>$P \neq Q$</li>
+  <li>$1 \leq A_i &lt; B_i \leq N$</li>
+  <li>$1 \leq C_i \leq 100\,000$</li>
+  <li>$1 \leq D_i \leq 10^9$</li>
+</ul>
+
+<h3>Subtasks</h3>
+
+<ol>
+  <li>
+    &nbsp;&nbsp;(8 points) Contains only the following test case:
+<pre>
+20 3 10 1 4 18
+1 4 11 7
+2 20 10 100
+17 20 9 7
+</pre>
+  </li>
+  <li>(11 points) $A_i = 1$; $B_i = N$</li>
+  <li>(21 points) $N \leq 1000$; $M \leq 5$; $T = 0$</li>
+  <li>(23 points) $M \leq 5$</li>
+  <li>(26 points) $T = 0$</li>
+  <li>(11 points) No additional constraints.</li>
+</ol>
+
+<h3>Input</h3>
+
+<p>
+  The input is given in the following format:
+</p>
+<pre>
+N M K T P Q
+A<sub>1</sub> B<sub>1</sub> C<sub>1</sub> D<sub>1</sub>
+A<sub>2</sub> B<sub>2</sub> C<sub>2</sub> D<sub>2</sub>
+&vellip;
+A<sub>M</sub> B<sub>M</sub> C<sub>M</sub> D<sub>M</sub>
+</pre>
+
+<h3>Output</h3>
+
+<p>
+  Output an integer representing the lowest possible total cost to travel from station $P$ to station $Q$.
+</p>
+
+<h3>Sample Input 1</h3>
+
+<pre>
+10 2 10 1 9 5
+7 10 10 8
+1 6 8 1
+</pre>
+
+<h3>Sample Output 1</h3>
+
+<pre>
+38
+</pre>
+
+<h3>Explanation of Sample 1</h3>
+
+<p>
+  The following illustrates the stations and the train routes:
+</p>
+<p>
+  <img src="render/krl-1.png" style="width: 300px;">
+</p>
+<p>
+  Bu Dengklek would like to travel from station $9$ to station $5$.
+  A possible trip is as follows:
+</p>
+<ol>
+  <li>At station $9$, buy a travel pass which costs $1$ to board the route $1$ commuter train to station $10$ which costs $10 \times |9 - 10| = 10$.</li>
+  <li>At station $10$, transfer for free to route $1$ express train to station $7$ which costs $8$.</li>
+  <li>At station $7$, take the bus to station $6$ which costs $10 \times |7 - 6| = 10$.</li>
+  <li>At station $6$, buy a travel pass which costs $1$ to board the route $2$ commuter train to station $5$ which costs $8 \times |6 - 5| = 8$.</li>
+</ol>
+<p>
+  The total cost is $1 + 10 + 8 + 10 + 1 + 8 = 38$.
+</p>
+
+<h3>Sample Input 2</h3>
+
+<pre>
+16 3 3 1 2 14
+1 9 2 12
+4 7 4 5
+12 15 3 1
+</pre>
+
+<h3>Sample Output 2</h3>
+
+<pre>
+28
+</pre>
+
+<h3>Explanation of Sample 2</h3>
+
+<p>
+  The following illustrates the stations and the train routes:
+</p>
+<p>
+  <img src="render/krl-2.png" style="width: 483px;">
+</p>
+<p>
+  Bu Dengklek would like to travel from station $2$ to station $14$.
+  A possible optimal trip is as follows:
+</p>
+<ol>
+  <li>At station $2$, buy a travel pass which costs $1$ to board the route $1$ commuter train to station $4$ which costs $2 \times |2 - 4| = 4$.</li>
+  <li>At station $4$, transfer for free to route $2$ express train to station $7$ which costs $5$.</li>
+  <li>At station $7$, transfer for free to route $1$ commuter train to station $9$ which costs $2 \times |7 - 9| = 4$.</li>
+  <li>At station $9$, take the bus to station $12$ which costs $3 \times |12 - 9| = 9$.</li>
+  <li>At station $12$, buy a travel pass which costs $1$ to board the route $3$ express train to station $15$ which costs $1$.</li>
+  <li>At station $15$, transfer for free to route $3$ commuter train to station $14$ which costs $3 \times |15 - 14| = 3$.</li>
+</ol>
+<p>
+  The total cost is $1 + 4 + 5 + 4 + 9 + 1 + 1 + 3 = 28$.
+</p>
+
+<h3>Sample Input 3</h3>
+
+<pre>
+4 1 10 100 4 1
+1 4 1 1
+</pre>
+
+<h3>Sample Output 3</h3>
+
+<pre>
+30
+</pre>
+
+<h3>Explanation of Sample 3</h3>
+
+<p>
+  The following illustrates the stations and the train routes:
+</p>
+<p>
+  <img src="render/krl-3.png" style="width: 117px;">
+</p>
+<p>
+  Bu Dengklek would like to travel from station $4$ to station $1$.
+  A possible optimal trip is as follows:
+</p>
+<ol>
+  <li>At station $4$, take the bus to station $1$ which costs $10 \times |4 - 1| = 30$.</li>
+</ol>
+<p>
+  The total cost is $30$.
+</p>

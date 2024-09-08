@@ -1,0 +1,15 @@
+{
+  "time_limit": 1,
+  "memory_limit": 256,
+  "samples": [
+    [3, 4]
+  ],
+  "test_groups": [
+    [1, 2, 3, 4],
+    [2, 3, 4],
+    [3, 4],
+    [4]
+  ],
+  "points": [9, 15, 33, 43],
+  "interactive": true
+}

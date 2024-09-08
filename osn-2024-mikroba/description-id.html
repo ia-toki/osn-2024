@@ -1,0 +1,440 @@
+<!-- Title: Mikroba Ciliwung -->
+
+<h3>Deskripsi</h3>
+
+<p>
+  Bu Dengklek bekerja di sebuah laboratorium untuk meneliti kualitas air sungai Ciliwung.
+  Bu Dengklek mengambil sampel air sungai Ciliwung dan menempatkannya di papan kaca.
+  Papan kacanya berbentuk persegi panjang yang terdiri atas petak-petak persegi yang tersusun dalam $N$ baris (dinomori $1$ hingga $N$ dari atas ke bawah) dan $M$ kolom (dinomori $1$ hingga $M$ dari kiri ke kanan).
+  Uniknya, $N$ dan $M$ merupakan <b>dua bilangan prima berbeda</b>.
+  Kita notasikan petak yang berada di baris $r$ dan kolom $c$ sebagai petak $(r, c)$.
+</p>
+<p>
+  Terdapat dua jenis mikroba: mikroba-K dan mikroba-B.
+  Mula-mulanya, terdapat setidaknya satu mikroba pada keseluruhan papan kaca.
+  Diketahui pula bahwa untuk setiap petak, dijamin terdapat maksimum $1$ mikroba-K dan maksimum $1$ mikroba-B.
+  Dijamin pula bahwa ada setidaknya satu petak tanpa mikroba sama sekali.
+</p>
+<p>
+  Bu Dengklek ingin mengambil seluruh mikroba dari papan.
+  Namun, Bu Dengklek tidak tahu konfigurasi mikroba di papannya.
+  Bu Dengklek dapat menggunakan mikroskopnya untuk mengobservasi papannya.
+  Observasi ini menghasilkan matriks $A$ berukuran $N \times M$ yang setiap elemennya bernilai $0$ atau $1$.
+  Jika $A_{i,j} = 0$, maka tidak ada mikroba sama sekali pada petak $(i, j)$.
+  Jika $A_{i,j} = 1$, maka ada setidaknya satu mikroba pada petak $(i, j)$.
+</p>
+<p>
+  Pada awalnya, Bu Dengklek mengobservasi papan kacanya.
+  Selama masih ada mikroba pada papan kaca, Bu Dengklek dapat melakukan dua jenis operasi berikut:
+</p>
+<ul>
+  <li>
+    <code>AKSELERASI T</code> (dengan $1 \leq T \leq 1000$) &mdash;
+    Bu Dengklek akan mempercepat laju seluruh mikroba selama $T$ satuan waktu.
+    Yang terjadi adalah sebagai berikut:
+    <ul>
+      <li>
+        Setiap mikroba-K akan bergerak ke <strong>kanan</strong> petak demi petak sebanyak $T$ kali.
+        Apabila mikroba bergerak satu langkah ke kanan dari petak terkanan pada barisnya, ia akan berpindah secara otomatis ke petak terkiri pada baris yang sama dalam satu langkah tersebut.
+      </li>
+      <li>
+        Setiap mikroba-B akan bergerak ke <strong>bawah</strong> petak demi petak sebanyak $T$ kali.
+        Apabila mikroba bergerak satu langkah ke bawah dari petak terbawah pada kolomnya, ia akan berpindah secara otomatis ke petak teratas pada kolom yang sama dalam satu langkah tersebut.
+      </li>
+      <li>
+        Setelah semua mikroba selesai bergerak, Bu Dengklek akan menggunakan mikroskopnya untuk mengobservasi papan.
+      </li>
+    </ul>
+  </li>
+  <li>
+    <code>EKSPERIMEN X Y</code> (dengan $1 \leq X \leq N$ dan $1 \leq Y \leq M$) &mdash;
+     Bu Dengklek meneliti sampel air pada petak $(X, Y)$ yang harus berisi setidaknya satu mikroba.
+     Dengan ini, Bu Dengklek akan mendapatkan informasi tentang banyaknya mikroba pada petak $(X, Y)$.
+     Setelah itu, seluruh mikroba pada petak tersebut akan diambil dari papan.
+  </li>
+</ul>
+<p>
+  Baca penjelasan contoh interaksi untuk lebih jelasnya.
+</p>
+<p>
+  Bu Dengklek harus melakukan operasi-operasi tersebut dengan urutan apa pun, <b>sampai tidak ada mikroba lagi pada papan kaca</b>.
+  Karena cukup menyita banyak waktu untuk melakukan <code>AKSELERASI</code>, Bu Dengklek hanya boleh melakukan <code>AKSELERASI</code> paling banyak $1000$ kali.
+</p>
+<p>
+  Di sisi lain, Bu Dengklek juga tidak boleh sembarangan dalam bereksperimen.
+  Suatu eksperimen dikatakan <strong>sukses</strong> apabila terdapat tepat $1$ mikroba pada petak yang dieksperimen, karena jika ada lebih dari $1$ mikroba, data mikroba bisa saja tercampur.
+</p>
+<p>
+  Pada akhirnya, Bu Dengklek akan diberi nilai yang bergantung pada seberapa akurat dan efisien operasi-operasi yang dia lakukan, seperti yang akan dijelaskan pada bagian penilaian.
+  Bantulah Bu Dengklek untuk mendapatkan nilai setinggi-tingginya!
+</p>
+
+<h3>Batasan</h3>
+
+<ul>
+  <li>$2 \leq N, M \leq 23$</li>
+  <li>$N$ dan $M$ merupakan dua bilangan prima berbeda.</li>
+  <li>Pada awalnya, terdapat setidaknya satu mikroba.</li>
+  <li>Pada awalnya, untuk setiap petak, terdapat maksimum $1$ mikroba-K dan maksimum $1$ mikroba-B.</li>
+  <li>Pada awalnya, terdapat setidaknya satu petak tanpa mikroba sama sekali.</li>
+</ul>
+
+<h3>Subsoal</h3>
+
+<ol>
+  <li>
+    <p>
+      &nbsp;&nbsp;(8 poin) Konfigurasi awal papan berbentuk sebagai berikut:
+    </p>
+    <p>
+      <img src="render/papan1.png" style="width: 200px;">
+    </p>
+    <p>
+      Perhatikan bahwa konfigurasi ini juga digunakan untuk contoh interaksi di bawah.
+    </p>
+  </li>
+  <li>(17 poin) Terdapat setidaknya satu baris dan setidaknya satu kolom tanpa mikroba sama sekali.</li>
+  <li>(19 poin) Terdapat setidaknya satu kolom tanpa mikroba sama sekali.</li>
+  <li>(30 poin) Terdapat suatu nilai $T$ sehingga <code>AKSELERASI T</code> di awal membuat setiap petak berisi paling banyak $1$ mikroba.</li>
+  <li>(26 poin) Tidak ada batasan tambahan.</li>
+</ol>
+
+<h3>Informasi Tipe Soal</h3>
+
+<p>
+  Soal ini bertipe "interaktif".
+  Pada soal ini, Anda akan berinteraksi dengan program penguji melalui masukan standar (<em>stdin</em>) dan keluaran standar (<em>stdout</em>).
+  Perhatikan interaksi di bawah ini dengan saksama.
+</p>
+
+<h3>Interaksi</h3>
+
+<p>
+  Awalnya, Anda akan diberikan nilai $N$, $M$, dan hasil observasi awal papan $A$ dalam format berikut:
+</p>
+<pre>
+N M
+A<sub>1,1</sub>A<sub>1,2</sub>&hellip;A<sub>1,N</sub>
+A<sub>2,1</sub>A<sub>2,2</sub>&hellip;A<sub>2,M</sub>
+&vellip;     &#x22f1; &vellip;
+A<sub>N,1</sub>A<sub>N,2</sub>&hellip;A<sub>N,M</sub>
+</pre>
+<p>
+  Untuk melakukan operasi <code>AKSELERASI</code> untuk suatu nilai $T$ ($1 \leq T \leq 1000$), Anda bisa menghasilkan keluaran dalam format berikut:
+</p>
+<pre>
+AKSELERASI T
+</pre>
+<p>
+  Untuk setiap keluaran tersebut, hasil observasi papan $A$ setelah operasi akan diberikan melalui masukan dengan format berikut:
+</p>
+<pre>
+A<sub>1,1</sub>A<sub>1,2</sub>&hellip;A<sub>1,N</sub>
+A<sub>2,1</sub>A<sub>2,2</sub>&hellip;A<sub>2,M</sub>
+&vellip;     &#x22f1; &vellip;
+A<sub>N,1</sub>A<sub>N,2</sub>&hellip;A<sub>N,M</sub>
+</pre>
+<p>
+  Untuk melakukan operasi <code>EKSPERIMEN</code> untuk suatu petak $(X, Y)$ ($1 \leq X \leq N$; $1 \leq Y \leq M$) yang berisi setidaknya satu mikroba, Anda bisa menghasilkan keluaran dalam format berikut:
+</p>
+<pre>
+EKSPERIMEN X Y
+</pre>
+<p>
+  Untuk setiap keluaran tersebut, hasil eksperimennya akan diberikan melalui masukan dengan format berikut:
+</p>
+<pre>
+Z
+</pre>
+<p>
+  Ini berarti, terdapat $Z$ mikroba pada petak $(X, Y)$.
+</p>
+<p>
+  Tepat ketika sudah tidak ada lagi mikroba pada papan, interaksi program Anda dan program juri harus langsung diberhentikan.
+  Anda tidak boleh berhenti jika masih ada mikroba pada papan.
+</p>
+
+<h3>Penilaian</h3>
+
+<p>
+  Bu Dengklek memperhitungkan dua nilai, yakni $\text{AKURASI}$ dan $\text{EFISIENSI}$.
+</p>
+<ul>
+  <li>
+    $\text{AKURASI}$ menyatakan seberapa akurat Bu Dengklek melakukan eksperimennya.
+    Jika $\text{SUKSES}$ menyatakan banyaknya eksperimen Bu Dengklek yang sukses, dan $\text{TOTAL}$ menyatakan total banyaknya mikroba di papan pada awalnya, maka $\text{AKURASI} = \left(\frac{\text{SUKSES}}{\text{TOTAL}}\right)^3 \times 100\%$.
+  </li>
+  <li>
+    $\text{EFISIENSI}$ menyatakan seberapa efisien Bu Dengklek dapat menggunakan waktunya untuk melakukan <code>AKSELERASI</code> sesedikit mungkin.
+    Jika $\text{ACC}$ menyatakan banyaknya operasi <code>AKSELERASI</code> yang dilakukan Bu Dengklek, maka nilai $\text{EFISIENSI}$ ditentukan berdasarkan tabel berikut:
+    <table border="1">
+      <thead>
+        <th>Kondisi</th>
+        <th>$\text{EFISIENSI}$</th>
+      </thead>
+      <tbody style="text-align: center;">
+        <tr>
+          <td style="text-align: left;">$1000 &lt; \text{ACC}$</td>
+          <td>$0\%$</td>
+        </tr>
+        <tr>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$9 &lt; \text{ACC} \leq 1000$</td>
+          <td>$(100 - 5 \times \log_2(\text{ACC} - 8))\%$</td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">$\text{ACC} \leq 9$&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          <td>$100\%$</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+<p>
+  Nilai $\text{PERFORMA}$ Bu Dengklek pada akhirnya adalah perkalian antara keduanya: $\text{PERFORMA} = \text{AKURASI} \times \text{EFISIENSI}$.
+  Sebagai permisalan, jika Bu Dengklek memiliki nilai $\text{AKURASI}$ $80\%$ dan nilai $\text{EFISIENSI}$ $75\%$, maka nilai $\text{PERFORMA}$ Bu Dengklek adalah $80\% \times 75\% = 60\%$.
+</p>
+<p>
+  Untuk setiap kasus uji, program akan dinilai $\text{PERFORMA}$-nya.
+  Setiap subsoal terdiri dari beberapa kasus uji.
+  Untuk setiap subsoal, akan diambil nilai $\text{PERFORMA}$ yang paling kecil.
+  Poin yang didapat untuk suatu subsoal adalah nilai $\text{PERFORMA}$ terkecil tersebut dikalikan dengan poin subsoal.
+  Nilai akhir adalah jumlah nilai semua subsoal, yang kemudian dibulatkan ke bawah.
+</p>
+<p>
+  Program Anda mungkin mendapat "Wrong Answer" atau "Time Limit Exceeded" jika:
+</p>
+<ul>
+  <li>melakukan operasi <code>AKSELERASI</code> sebanyak lebih dari $1000$ kali,</li>
+  <li>menghasilkan keluaran dengan format yang salah atau di luar batasan,</li>
+  <li>melakukan eksperimen pada petak yang tidak berisi mikroba,</li>
+  <li>tidak melakukan interaksi sesuai format, misalnya tidak membaca masukan segera setelah melakukan operasi.</li>
+  <li>tidak mengeluarkan operasi lagi sedangkan masih ada mikroba di papan, atau</li>
+  <li>masih mengeluarkan operasi sedangkan sudah tidak ada lagi mikroba di papan.</li>
+</ul>
+<p>
+  Jika suatu kasus uji berhasil dijalankan, Anda bisa melihat penilaiannya secara detail di halaman pengumpulan.
+  Anda bisa melihat nilai $\text{AKURASI}$, $\text{EFISIENSI}$, dan $\text{PERFORMA}$ untuk kasus uji tersebut.
+</p>
+<p>
+  <em>Grader</em> <b>tidak adaptif</b>.
+  Dengan kata lain, konfigurasi mikroba sudah ditentukan sebelum interaksi dimulai.
+</p>
+
+<h3>Contoh Interaksi</h3>
+
+<p>
+  Berikut adalah sebuah contoh interaksi yang mungkin dengan suatu konfigurasi papan tertentu.
+  Perhatikan bahwa informasi konfigurasi papan ini tidak diketahui oleh program Anda dan hanya ditampilkan untuk membantu memahami contoh interaksi.
+</p>
+
+<table>
+  <tr>
+    <th>Masukan</th>
+    <th>Keluaran</th>
+    <th>Konfigurasi Papan</th>
+  </tr>
+  <tr>
+    <td>
+<pre>
+3 5
+10011
+00101
+10101
+</pre>
+    </td>
+    <td></td>
+    <td>
+      <img src="render/papan1.png" style="width: 200px;">
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><pre>AKSELERASI 1</pre></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>
+<pre>
+11001
+10011
+10010
+</pre>
+    </td>
+    <td></td>
+    <td>
+      <img src="render/papan2.png" style="width: 200px;">
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><pre>AKSELERASI 1</pre></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>
+<pre>
+10100
+11001
+11011
+</pre>
+    </td>
+    <td></td>
+    <td>
+      <img src="render/papan3.png" style="width: 200px;">
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><pre>EKSPERIMEN 2 5</pre></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><pre>1</pre></td>
+    <td></td>
+    <td>
+      <img src="render/papan4.png" style="width: 200px;">
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><pre>EKSPERIMEN 3 5</pre></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><pre>2</pre></td>
+    <td></td>
+    <td>
+      <img src="render/papan5.png" style="width: 200px;">
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><pre>EKSPERIMEN 1 1</pre></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><pre>1</pre></td>
+    <td></td>
+    <td>
+      <img src="render/papan6.png" style="width: 200px;">
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><pre>AKSELERASI 4</pre></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>
+<pre>
+11010
+10000
+10000
+</pre>
+    </td>
+    <td></td>
+    <td>
+      <img src="render/papan7.png" style="width: 200px;">
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><pre>EKSPERIMEN 3 1</pre></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><pre>2</pre></td>
+    <td></td>
+    <td>
+      <img src="render/papan8.png" style="width: 200px;">
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><pre>AKSELERASI 1000</pre></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>
+<pre>
+01000
+10010
+00000
+</pre>
+    </td>
+    <td></td>
+    <td>
+      <img src="render/papan9.png" style="width: 200px;">
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><pre>EKSPERIMEN 1 2</pre></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><pre>1</pre></td>
+    <td></td>
+    <td>
+      <img src="render/papan10.png" style="width: 200px;">
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><pre>EKSPERIMEN 2 4</pre></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><pre>1</pre></td>
+    <td></td>
+    <td>
+      <img src="render/papan11.png" style="width: 200px;">
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><pre>EKSPERIMEN 2 1</pre></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><pre>2</pre></td>
+    <td></td>
+    <td>
+      <img src="render/papan12.png" style="width: 200px;">
+    </td>
+  </tr>
+  <tr>
+    <td>(selesai)</td>
+    <td>(selesai)</td>
+    <td></td>
+  </tr>
+</table>
+
+<p>
+  Pada contoh di atas, Bu Dengklek berhasil melakukan $4$ buah eksperimen sukses.
+  Totalnya, ada $10$ mikroba di papan pada awalnya.
+  Sehingga $\text{AKURASI}$ Bu Dengklek adalah: $\left(\frac{4}{10}\right)^3 \times 100\% = 6.4\%$.
+</p>
+<p>
+  Bu Dengklek melakukan $4$ kali operasi <code>AKSELERASI</code>.
+  Untuk menghitung $\text{EFISIENSI}$, bisa didapatkan dari tabel bahwa karena banyaknya operasi <code>AKSELERASI</code> yang dilakukan tidak lebih dari $9$, maka nilai $\text{EFISIENSI}$-nya $100\%$.
+</p>
+<p>
+  Pada akhirnya, nilai $\text{PERFORMA}$ Bu Dengklek adalah perkalian keduanya, yakni: $\text{PERFORMA} = \text{AKURASI} \times \text{EFISIENSI} = 6.4\% \times 100\% = 6.4\%$.
+</p>
+
+<h3>Peringatan</h3>
+
+<p>
+  Selalu lakukan <em>flush</em> setiap kali setelah program Anda mengeluarkan keluaran.
+</p>
+<ul>
+  <li>
+    Untuk <em>library</em> <code>stdio.h</code> (<code>cstdio</code>):
+    <pre>fflush(stdout);</pre>
+  </li>
+  <li>
+    Untuk <em>library</em> <code>iostream</code>:
+    <pre>std::cout &lt;&lt; std::flush;</pre>
+  </li>
+</ul>

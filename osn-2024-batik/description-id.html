@@ -1,0 +1,160 @@
+<!-- Title: Batik Betawi -->
+
+<h3>Deskripsi</h3>
+
+<p>
+  Pak Dengklek sangat tertarik dengan batik Betawi.
+  Suatu hari, Pak Dengklek menemukan kain batik Betawi yang ajaib.
+</p>
+<p>
+  Kain batik yang ditemukan Pak Dengklek berbentuk persegi panjang yang terbagi menjadi petak-petak persegi dengan $N$ baris dan $M$ kolom.
+  Baris-barisnya dinomori dari $1$ hingga $N$ dari atas ke bawah.
+  Kolom-kolomnya dinomori dari $1$ hingga $M$ dari kiri ke kanan.
+  Anggap $(r, c)$ menotasikan petak pada baris $r$ dan kolom $c$.
+</p>
+<p>
+  Terdapat $N \times M$ warna berbeda pada kain.
+  Warna-warnanya dinomori dari $0$ hingga $N \times M - 1$.
+  Awalnya, petak $(i, j)$ memiliki warna $A_{i,j}$ untuk setiap $1 \leq i \leq N$; $1 \leq j \leq M$.
+  Diketahui bahwa tidak ada dua petak dengan warna sama pada awalnya.
+</p>
+<p>
+  Karena kain batik ini ajaib, Pak Dengklek bisa melakukan beberapa modifikasi terhadap warna-warna yang ada di kain ini.
+  Akan terjadi $Q$ kejadian.
+  Masing-masing kejadian merupakan salah satu dari tiga tipe berikut:
+</p>
+<ul>
+  <li>
+    <code>1 R<sub>1</sub> C<sub>1</sub> R<sub>2</sub> C<sub>2</sub></code> &mdash;
+    Petak $(R_1, C_1)$ dan $(R_2, C_2)$ bertukar warna.
+  </li>
+  <li>
+    <code>2 W</code> &mdash;
+    Setiap petak berubah warna dari warna $x$ menjadi warna $(x + W) \bmod (N \times M)$.
+    Catatan: $p \bmod q$ menotasikan sisa hasil membagi $p$ dengan $q$.
+  </li>
+  <li>
+    <code>3 R<sub>1</sub> C<sub>1</sub> R<sub>2</sub> C<sub>2</sub></code> &mdash;
+    Pak Dengklek bertanya: apa warna dengan nomor terkecil yang tidak muncul pada seluruh petak $(r, c)$ yang memenuhi $R_1 \leq r \leq R_2$; $C_1 \leq c \leq C_2$?
+  </li>
+</ul>
+<p>
+  Bantulah Pak Dengklek menjawab semua pertanyaannya!
+</p>
+
+<h3>Batasan</h3>
+
+<ul>
+  <li>$1 \leq N, M \leq 500$</li>
+  <li>$0 \leq A_{i,j} \leq N \times M - 1$</li>
+  <li>Tidak ada dua petak dengan warna sama pada awalnya.</li>
+  <li>$1 \leq Q \leq 100\,000$</li>
+  <li>Untuk setiap kejadian tipe 1, $1 \leq R_1, R_2 \leq N$; $1 \leq C_1, C_2 \leq M$; $(R_1, C_1) \neq (R_2, C_2)$.</li>
+  <li>Untuk setiap kejadian tipe 2, $1 \leq W \leq N \times M - 1$.</li>
+  <li>Untuk setiap kejadian tipe 3, $1 \leq R_1 \leq R_2 \leq N$; $1 \leq C_1 \leq C_2 \leq M$.</li>
+  <li>Terdapat setidaknya satu kejadian tipe 3.</li>
+</ul>
+
+<h3>Subsoal</h3>
+
+<ol>
+  <li>&nbsp;&nbsp;(9 poin) Terdapat paling banyak $10$ kejadian tipe 2 dan paling banyak $10$ kejadian tipe 3.</li>
+  <li>(10 poin) Terdapat paling banyak $10$ kejadian tipe 3.</li>
+  <li>(15 poin) Tidak ada kejadian tipe 2; untuk setiap kejadian tipe 3, dijamin $(R_1, C_1, R_2, C_2) = (1, 1, \lceil\frac{N}{2}\rceil, M)$.</li>
+  <li>&nbsp;&nbsp;(8 poin) Untuk setiap kejadian tipe 3, dijamin $(R_1, C_1, R_2, C_2) = (1, 1, \lceil\frac{N}{2}\rceil, M)$.</li>
+  <li>(28 poin) Tidak ada kejadian tipe 1 ataupun 2.</li>
+  <li>(23 poin) Tidak ada kejadian tipe 2.</li>
+  <li>&nbsp;&nbsp;(7 poin) Tidak ada batasan tambahan.</li>
+</ol>
+
+<h3>Masukan</h3>
+
+<p>
+  Masukan diberikan dalam format berikut:
+</p>
+<pre>
+N M
+A<sub>1,1</sub> A<sub>1,2</sub> &hellip; A<sub>1,M</sub>
+A<sub>2,1</sub> A<sub>2,2</sub> &hellip; A<sub>2,M</sub>
+&vellip;        &#x22f1; &vellip;
+A<sub>N,1</sub> A<sub>N,2</sub> &hellip; A<sub>N,M</sub>
+Q
+kejadian<sub>1</sub>
+kejadian<sub>2</sub>
+&vellip;
+kejadian<sub>Q</sub>
+</pre>
+
+<h3>Keluaran</h3>
+
+<p>
+  Untuk setiap kejadian tipe 3, keluarkan sebuah baris berisi sebuah bilangan bulat yang menyatakan nomor warna terkecil yang tidak muncul pada seluruh petak $(r, c)$ yang memenuhi $R_1 \leq r \leq R_2$; $C_1 \leq c \leq C_2$.
+  Khususnya, jika semua warna muncul, keluarkan <code>-1</code>.
+</p>
+
+<h3>Contoh Masukan</h3>
+
+<pre>
+4 3
+11 10 9
+2 6 7
+1 5 0
+3 8 4
+6
+3 2 1 3 3
+1 2 3 1 2
+2 7
+3 1 2 4 2
+3 1 1 4 3
+3 4 1 4 1
+</pre>
+
+<h3>Contoh Keluaran</h3>
+
+<pre>
+3
+4
+-1
+0
+</pre>
+
+<h3>Penjelasan Contoh</h3>
+
+<p>
+  Awalnya, kain batiknya berbentuk sebagai berikut:
+</p>
+<p>
+  <img src="render/batikbetawi.png" style="width: 200px;">
+</p>
+<p>
+  Kejadian ke-$1$ mempertanyakan bagian kain berikut:
+</p>
+<p>
+  <img src="render/batikbetawi2.png" style="width: 200px;">
+</p>
+<ul>
+  <li>Warna dengan nomor terkecil yang tidak muncul adalah $3$.</li>
+</ul>
+<p>
+  Setelah kejadian ke-$2$, kain batiknya menjadi seperti berikut:
+</p>
+<p>
+  <img src="render/batikbetawi3.png" style="width: 200px;">
+</p>
+<p>
+Setelah kejadian ke-$3$, kain batiknya menjadi seperti berikut:
+</p>
+<p>
+  <img src="render/batikbetawi4.png" style="width: 200px;">
+</p>
+<p>
+  Kejadian ke-$4$, ke-$5$, dan ke-$6$ mempertanyakan bagian-bagian kain berikut:
+</p>
+<p>
+  <img src="render/batikbetawi5.png" style="width: 200px;">
+</p>
+<ul>
+  <li>Untuk kejadian ke-$4$, warna dengan nomor terkecil yang tidak muncul adalah $4$.</li>
+  <li>Untuk kejadian ke-$5$, semua warna muncul, sehingga kita perlu mengeluarkan <code>-1</code>.</li>
+  <li>Untuk kejadian ke-$6$, warna dengan nomor terkecil yang tidak muncul adalah $0$.</li>
+</ul>
